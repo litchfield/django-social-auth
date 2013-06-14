@@ -197,6 +197,9 @@ class GoogleOAuth2(BaseOAuth2):
     DEFAULT_SCOPE = GOOGLE_OAUTH2_SCOPE
     REDIRECT_STATE = False
 
+    def auth_extra_arguments(self):
+        return {'access_type': 'offline'}
+        
     def user_data(self, access_token, *args, **kwargs):
         """Return user data from Google API"""
         return googleapis_profile(GOOGLEAPIS_PROFILE, access_token)
